@@ -23,7 +23,7 @@
 #else
  #include "WProgram.h"
 #endif
-#include "Wire.h"
+#include "SoftwareWire.h"
 
 #define BMP085_DEBUG 0
 
@@ -55,6 +55,7 @@
 class Adafruit_BMP085 {
  public:
   Adafruit_BMP085();
+  Adafruit_BMP085(int sda, int scl);
   boolean begin(uint8_t mode = BMP085_ULTRAHIGHRES);  // by default go highres
   float readTemperature(void);
   int32_t readPressure(void);
@@ -73,6 +74,7 @@ class Adafruit_BMP085 {
 
   int16_t ac1, ac2, ac3, b1, b2, mb, mc, md;
   uint16_t ac4, ac5, ac6;
+  SoftwareWire *myWire;
 };
 
 
